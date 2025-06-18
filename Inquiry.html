@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Platform - Inquiry Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f7ff',
+                            100: '#e0efff',
+                            200: '#bfdfff',
+                            300: '#8fc7ff',
+                            400: '#5caaff',
+                            500: '#2e8bff',
+                            600: '#1e70e6',
+                            700: '#1757b3',
+                            800: '#133f80',
+                            900: '#0e2a59',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #2e8bff 0%, #133f80 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="https://m.imimg.com/gifs/iml300.png" alt="IndiaB2B Logo">
+                        <span class="ml-2 text-xl font-bold text-red-600 dark:text-primary-600">IndiaB2B</span>
+                    </div>
+                    
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="bborder-transparent text-gray-500  inline-flex items-center px-1 pt-1  text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Products
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Suppliers
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Categories
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                    <div class="max-w-lg w-full lg:max-w-xs">
+                        <label for="search" class="sr-only">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400 dark:text-gray-300"></i>
+                            </div>
+                            <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-300 focus:outline-none focus:placeholder-gray-400 dark:focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400 sm:text-sm" placeholder="Search products, suppliers..." type="search">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-2">
+                    <!-- Dark/Light Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                  <a href="#"
+   class="px-3 py-2 border-b-4 border-blue-800 rounded-t-md text-sm font-medium text-black dark:text-white hover:text-blue-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+  <i class="fas fa-envelope mr-1"></i> Inquiries
+</a>
+
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-user mr-1"></i> Account
+                    </a>
+                    <a href="#" class="ml-3 px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-primary-600 to-primary-800 hover:from-primary-700 hover:to-primary-900">
+                        <i class="fas fa-plus mr-1"></i> Sell Now
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-primary-50 dark:bg-gray-700 border-primary-500 text-primary-700 dark:text-primary-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">home</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Suppliers</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Categories</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Inquiries</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Account</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sell Now</a>
+                <div class="px-3 py-2">
+                    <button id="mobile-theme-toggle" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden mr-2"></i>
+                        <i class="fas fa-sun hidden dark:inline mr-2"></i>
+                        Toggle Dark Mode
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="md:w-1/4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg card-shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Inquiry Filters</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                            <select class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option>All Inquiries</option>
+                                <option>New</option>
+                                <option>Responded</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date Range</label>
+                            <select class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option>Last 7 days</option>
+                                <option>Last 30 days</option>
+                                <option>Last 90 days</option>
+                                <option>Custom range</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Product Category</label>
+                            <select class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option>All Categories</option>
+                                <option>Electronics</option>
+                                <option>Textiles</option>
+                                <option>Machinery</option>
+                                <option>Chemicals</option>
+                            </select>
+                        </div>
+                        <button class="w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md transition duration-200">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <div class="md:w-3/4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg card-shadow overflow-hidden">
+                    <!-- Panel Header -->
+                    <div class="gradient-bg px-6 py-4">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-semibold text-white">Product Inquiries</h2>
+                            <div class="relative">
+                                <input type="text" placeholder="Search inquiries..." class="pl-10 pr-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 dark:text-gray-300 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inquiry List -->
+                    <div class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <!-- Inquiry Item -->
+                        <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-medium text-primary-800 dark:text-primary-300">Industrial Hydraulic Pumps</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">From: Global Machinery Inc.</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Date: May 15, 2023</p>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-600 dark:text-yellow-100">
+                                    Pending Response
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-gray-700 dark:text-gray-300">We're interested in purchasing 50 units of your Model X-200 Hydraulic Pumps. Please share your best quote and delivery timeline for shipment to our warehouse in Mumbai.</p>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button onclick="openResponseModal(1)" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    Respond
+                                </button>
+                                <button class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Inquiry Item -->
+                        <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-medium text-primary-800 dark:text-primary-300">Stainless Steel Sheets 304L</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">From: Precision Metal Works</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Date: May 12, 2023</p>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-600 dark:text-green-100">
+                                    Responded
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-gray-700 dark:text-gray-300">Requesting quotation for 2mm thickness stainless steel sheets, 1000 pieces per month for 6 months. Need certification and material test reports.</p>
+                                <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900 rounded-md">
+                                    <p class="text-sm font-medium text-primary-800 dark:text-primary-300">Your Response:</p>
+                                    <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Thank you for your inquiry. We can offer $12.50 per sheet with 2-week delivery. All certifications included. Let me know if you'd like to proceed.</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button onclick="openResponseModal(2)" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    Update Response
+                                </button>
+                                <button class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Inquiry Item -->
+                        <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-medium text-primary-800 dark:text-primary-300">Custom Plastic Molding</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">From: Apex Consumer Products</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Date: May 8, 2023</p>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-100">
+                                    Closed
+                                </span>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-gray-700 dark:text-gray-300">Need manufacturer for custom plastic components for kitchen appliances. Minimum order quantity requirements and sample policy?</p>
+                                <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900 rounded-md">
+                                    <p class="text-sm font-medium text-primary-800 dark:text-primary-300">Your Response:</p>
+                                    <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">We can manufacture to your specifications with MOQ of 10,000 units. Samples available for $50 (refundable with order). Attached our catalog for reference.</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    View Details
+                                </button>
+                                <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                    Reopen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="bg-gray-50 dark:bg-gray-800 px-6 py-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex-1 flex justify-between sm:hidden">
+                            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                Previous
+                            </a>
+                            <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                Next
+                            </a>
+                        </div>
+                        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">24</span> results
+                                </p>
+                            </div>
+                            <div>
+                                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                        <span class="sr-only">Previous</span>
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                    <a href="#" aria-current="page" class="z-10 bg-primary-500 border-primary-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                        1
+                                    </a>
+                                    <a href="#" class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                        2
+                                    </a>
+                                    <a href="#" class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                        3
+                                    </a>
+                                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                        <span class="sr-only">Next</span>
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Response Modal -->
+    <div id="responseModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white" id="modal-title">
+                        Respond to Inquiry
+                    </h3>
+                    <div class="mt-4">
+                        <label for="responseMessage" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Your Response</label>
+                        <textarea id="responseMessage" rows="4" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Attachments</label>
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-300" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="flex text-sm text-gray-600 dark:text-gray-300">
+                                    <label for="file-upload" class="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-primary-500 hover:text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                                        <span>Upload files</span>
+                                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-300">
+                                    PDF, DOC, XLS up to 10MB
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Send Response
+                    </button>
+                    <button onclick="closeResponseModal()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Load saved theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            htmlElement.classList.add('dark');
+        }
+
+        // Toggle theme on click
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        mobileThemeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Mobile Header Toggle (for header nav)
+        const mobileHeaderToggle = document.getElementById('mobile-header-toggle');
+        const headerNav = document.querySelector('header nav');
+        mobileHeaderToggle.addEventListener('click', () => {
+            headerNav.classList.toggle('hidden');
+        });
+
+        // Response Modal Functions
+        function openResponseModal(inquiryId) {
+            document.getElementById('responseModal').classList.remove('hidden');
+        }
+
+        function closeResponseModal() {
+            document.getElementById('responseModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('responseModal');
+            if (event.target === modal) {
+                closeResponseModal();
+            }
+        }
+    </script>
+</body>
+</html>
