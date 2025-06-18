@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndiaB2B - Largest B2B Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f7ff',
+                            100: '#e0efff',
+                            200: '#bfdfff',
+                            300: '#8fc7ff',
+                            400: '#5caaff',
+                            500: '#2e8bff',
+                            600: '#1e70e6',
+                            700: '#1757b3',
+                            800: '#133f80',
+                            900: '#0e2a59',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="https://m.imimg.com/gifs/iml300.png" alt="IndiaB2B Logo">
+                        <span class="ml-2 text-xl font-bold text-red-600 dark:text-primary-600">IndiaB2B</span>
+                    </div>
+                    
+                    <!-- Primary Nav -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-primary-500 text-gray-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Products
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Suppliers
+                        </a>
+                        <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Categories
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                    <div class="max-w-lg w-full lg:max-w-xs">
+                        <label for="search" class="sr-only">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                            <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-300 focus:outline-none focus:placeholder-gray-400 dark:focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400 sm:text-sm" placeholder="Search products, suppliers..." type="search">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side Nav -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-2">
+                    <!-- Dark/Light Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-envelope mr-1"></i> Inquiries
+                    </a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-user mr-1"></i> Account
+                    </a>
+                    <a href="#" class="ml-3 px-3 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-primary-600 to-primary-800 hover:from-primary-700 hover:to-primary-900">
+                        <i class="fas fa-plus mr-1"></i> Sell Now
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-primary-50 dark:bg-gray-700 border-primary-500 text-primary-700 dark:text-primary-300 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Products</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Suppliers</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Categories</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Inquiries</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Account</a>
+                <a href="#" class="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sell Now</a>
+                <div class="px-3 py-2">
+                    <button id="mobile-theme-toggle" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden mr-2"></i>
+                        <i class="fas fa-sun hidden dark:inline mr-2"></i>
+                        Toggle Dark Mode
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-primary-700 to-primary-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    India's Largest B2B Marketplace
+                </h1>
+                <p class="mt-6 max-w-lg mx-auto text-xl text-primary-100">
+                    Connect with millions of buyers and suppliers across India
+                </p>
+                <div class="mt-10 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50">
+                            Browse Products
+                        </a>
+                    </div>
+                    <div class="ml-3 inline-flex">
+                        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-800 bg-opacity-60 hover:bg-opacity-70">
+                            Register as Supplier
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Categories Section -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Popular Categories</h2>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                <!-- Category Card -->
+                <a href="#" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:border-primary-300 hover:shadow-md transition duration-150 ease-in-out text-center">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-primary-50 dark:bg-gray-700 flex items-center justify-center mb-2">
+                        <i class="fas fa-tshirt text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Apparel</span>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:border-primary-300 hover:shadow-md transition duration-150 ease-in-out text-center">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-primary-50 dark:bg-gray-700 flex items-center justify-center mb-2">
+                        <i class="fas fa-microchip text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Electronics</span>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:border-primary-300 hover:shadow-md transition duration-150 ease-in-out text-center">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-primary-50 dark:bg-gray-700 flex items-center justify-center mb-2">
+                        <i class="fas fa-home text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Home & Kitchen</span>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:border-primary-300 hover:shadow-md transition duration-150 ease-in-out text-center">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-primary-50 dark:bg-gray-700 flex items-center justify-center mb-2">
+                        <i class="fas fa-tools text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Industrial Tools</span>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:border-primary-300 hover:shadow-md transition duration-150 ease-in-out text-center">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-primary-50 dark:bg-gray-700 flex items-center justify-center mb-2">
+                        <i class="fas fa-pills text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Health Care</span>
+                </a>
+                
+                <a href="#" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:border-primary-300 hover:shadow-md transition duration-150 ease-in-out text-center">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-primary-50 dark:bg-gray-700 flex items-center justify-center mb-2">
+                        <i class="fas fa-car text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Automotive</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Featured Products Section -->
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Featured Products</h2>
+                <a href="#" class="text-primary-600 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 font-medium">View All</a>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <!-- Product Card 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-lg transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-48 flex items-center justify-center">
+                        <img src="https://images.meesho.com/images/products/458723096/ux5hq_1200.jpg" alt="Product" class="h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Stainless Steel Water Bottle</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">By ABC Suppliers</p>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 dark:text-gray-300 text-xs ml-1">(42)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-primary-600 dark:text-primary-400">₹299</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-300">MOQ: 50 pieces</span>
+                        </div>
+                        <button class="mt-3 w-full py-2 px-4 border border-primary-600 dark:border-primary-400 rounded-md text-primary-600 dark:text-primary-400 hover:bg-primary-600 dark:hover:bg-primary-700 hover:text-white transition duration-150 ease-in-out">
+                            Send Inquiry
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-lg transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-48 flex items-center justify-center">
+                        <img src="https://images-cdn.ubuy.co.in/6350d083d1a18604c153d705-august-ep636-bluetooth-headphones.jpg" alt="Product" class="h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Bluetooth Headphones</p3>
+                        <div class="text-gray-500 dark:text-gray-300 text-sm mb-2">By XYZ Electronics</p>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 dark:text-gray-300 text-xs ml-1">(128)</span>
+                            </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-primary-600 dark:text-primary-400">₹1,299</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-300">MOQ: 20 pieces</span>
+                            </div>
+                        </div>
+                        <button class="mt-3 w-full py-2 px-4 py-2 border border-primary-600 dark:border-primary-400 rounded-md text-primary-600 dark:text-primary-400 hover:bg-primary-600 dark:hover:bg-primary-700 hover:text-white transition duration-150 ease-in-out">
+                            Send Inquiry
+                        </button>
+                        </div>
+                    </div>
+                
+                <!-- Product Card 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-lg transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-48 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpgzdjsgWxsCyOAIYLF87uMf8G8qpYCiduVw&s" alt="Product" class="h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Organic Cotton T-Shirts</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">By Fashion Hub</p>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 dark:text-gray-300 text-xs ml-1">(56)</span>
+                            </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-primary-600 dark:text-primary-400">₹349</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-300">MOQ: 100 pieces</span>
+                            </div>
+                        <button class="mt-3 w-full py-2 px-4 border border-primary-600 dark:border-primary-400 rounded-md text-primary-600 dark:text-primary-400 hover:bg-primary-600 dark:hover:bg-primary-700 hover:text-white transition duration-150 ease-in-out">
+                            Send Inquiry
+                            </button>
+                        </div>
+                    </div>
+                
+                <!-- Product Card 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-lg transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-48 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOLO2r2mPzs1iUw1D6iuHAlpYBpUKmtvkZ7w&s" alt="Product" class="h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Stainless Steel Cookware Set</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">By Home Essentials</p>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 dark:text-gray-300 text-xs ml-1">(87)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-primary-600 dark:text-primary-400">₹2,499</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-300">MOQ: 10 sets</span>
+                        </div>
+                        <button class="mt-3 w-full py-2 px-4 border border-primary-600 dark:border-primary-400 rounded-md text-primary-600 dark:text-primary-400 hover:bg-primary-600 dark:hover:bg-primary-700 hover:text-white transition duration-150 ease-in-out">
+                            Send Inquiry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Suppliers Section -->
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Premium Suppliers</h2>
+                <a href="#" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 font-medium">View All</a>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Supplier Card 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-32 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRt73HwRtzy8ItMeROntt2dATp9rvCzXFEHQ&s alt="Supplier" class="h-full object-contain p-4">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">ABC Manufacturing Co.</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">Industrial Equipment</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-300 mb-3">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Mumbai, Maharashtra</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Verified <i class="fas fa-check-circle text-green-500"></i></span>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-medium">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supplier Card 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-32 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRofEEm1_GYFgiBvy_a3LaT_Lrhful1yFa-8Q&s" alt="Supplier" class="h-full object-contain p-4">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">XYZ Electronics Ltd.</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">Consumer Electronics</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-300 mb-3">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Bangalore, Karnataka</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Verified <i class="fas fa-check-circle text-green-500"></i></span>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-medium">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supplier Card 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-32 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbch38lMzLIr5lO1X0RyYheM1NYvrH1xCXg&s" alt="Supplier" class="h-full object-contain p-4">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Fashion Hub India</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">Apparel & Textiles</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-300 mb-3">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Delhi, NCR</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Verified <i class="fas fa-check-circle text-green-500"></i></span>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-medium">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supplier Card 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-150 ease-in-out">
+                    <div class="bg-gray-200 dark:bg-gray-700 h-32 flex items-center justify-center">
+                        <img src="https://homeessentials.in/cdn/shop/files/HE_Hero_1460x1650_Wooden_2.jpg?v=1749040653" alt="Supplier" class="h-full object-contain p-4">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Home Essentials Pvt. Ltd.</h3>
+                        <p class="text-gray-500 dark:text-gray-300 text-sm mb-2">Home & Kitchen</p>
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-300 mb-3">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Chennai, Tamil Nadu</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Verified <i class="fas fa-check-circle text-green-500"></i></span>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 text-sm font-medium">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">About IndiaB2B</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Press</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Buyers</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">How to Buy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Find Suppliers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Buyer Protection</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Buyer FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Suppliers</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">How to Sell</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Get Verified</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Seller Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Seller FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="text-sm font-semibold mb-2">Download App</h4>
+                        <div class="flex space-x-2">
+                            <a href="#" class="block">
+                                <img src="https://image.similarpng.com/file/similarpng/very-thumbnail/2021/09/Google-play-icon-design-on-transparent-background-PNG.png" class="h-6 w-6 rounded-2xl">
+                            </a>
+                            <a href="#" class="block">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyI-Uv9NetrYwskCvVQPa1BaxJUD-1XahqUg&s" alt="App Store" class="h-6 w-6 rounded-2xl">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-300 text-sm">© 2023 IndiaB2B Marketplace. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-300 hover:text-white text-sm">Terms of Use</a>
+                    <a href="#" class="text-gray-300 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-300 hover:text-white text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Nav (for smaller screens) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t border-gray-200 dark:border-gray-700 sm:hidden z-10">
+        <div class="flex justify-around">
+            <a href="#" class="flex flex-col items-center py-2 px-4 text-primary-600 dark:text-primary-400">
+                <i class="fas fa-home"></i>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-4 text-gray-500 dark:text-gray-300">
+                <i class="fas fa-search"></i>
+                <span class="text-xs mt-1">Search</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-4 text-gray-500 dark:text-gray-300">
+                <i class="fas fa-envelope"></i>
+                <span class="text-xs mt-1">Inquiries</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-4 text-gray-500 dark:text-gray-300">
+                <i class="fas fa-user"></i>
+                <span class="text-xs mt-1">Account</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        // Check for saved theme preference or use system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        mobileThemeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Toggle mobile menu
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
